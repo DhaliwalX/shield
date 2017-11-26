@@ -10,26 +10,28 @@
 #include "ConnectionEventListener.h"
 
 namespace avenger {
-    namespace strange {
+namespace strange {
 
-        class ConnectionEvent : public Event {
-        public:
-            explicit ConnectionEvent(std::shared_ptr<TCPConnection> connection);
+class ConnectionEvent : public Event {
+ public:
+  explicit ConnectionEvent(std::shared_ptr<TCPConnection> connection);
 
-            EventMetadata *getMetadata() override;
+  EventMetadata* getMetadata() override;
 
-            static std::shared_ptr<ConnectionEvent> Make(std::shared_ptr<TCPConnection> connection);
+  static std::shared_ptr<ConnectionEvent> Make(
+      std::shared_ptr<TCPConnection> connection);
 
-            TCPConnection::pointer getConnection();
+  TCPConnection::pointer getConnection();
 
-            static void Init();
+  static void Init();
 
-            static void Subscribe(ConnectionEventListener *listener);
-        private:
-            std::shared_ptr<TCPConnection> connection_;
-            static std::unique_ptr<EventMetadata> metadata_;
-        };
-    }
+  static void Subscribe(ConnectionEventListener* listener);
+
+ private:
+  std::shared_ptr<TCPConnection> connection_;
+  static std::unique_ptr<EventMetadata> metadata_;
+};
+}
 }
 
-#endif //HELLOWORLD_CONNECTIONEVENT_H
+#endif  // HELLOWORLD_CONNECTIONEVENT_H

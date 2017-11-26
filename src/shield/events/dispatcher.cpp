@@ -7,8 +7,8 @@
 #include "dispatcher.h"
 
 namespace avenger {
-    void dispatch(avenger::SHIELD *shield, std::shared_ptr<avenger::Event> event) {
-        assert(shield && "SHIELD was null during dispatching event.");
-        shield->postEvent(std::move(event));
-    }
+void dispatch(avenger::SHIELD* shield, std::shared_ptr<avenger::Event> event) {
+  assert(shield && "SHIELD was null during dispatching event.");
+  shield->postEvent(std::move(event));
+}
 }

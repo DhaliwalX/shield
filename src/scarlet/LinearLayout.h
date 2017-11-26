@@ -6,48 +6,45 @@
 #include <SkBitmap.h>
 
 namespace avenger {
-    namespace scarlet {
+namespace scarlet {
 
-        class LinearLayout : public View {
-        public:
-            enum class Direction {
-                kHorizontal,
-                kVertical
-            };
+class LinearLayout : public View {
+ public:
+  enum class Direction { kHorizontal, kVertical };
 
-            LinearLayout();
+  LinearLayout();
 
-            void addChild(std::shared_ptr<View> view);
+  void addChild(std::shared_ptr<View> view);
 
-            void addChildren(std::vector<std::shared_ptr<View>> children);
+  void addChildren(std::vector<std::shared_ptr<View>> children);
 
-            void setDirection(Direction direction);
+  void setDirection(Direction direction);
 
-            void onCreate(SkCanvas *canvas) override;
+  void onCreate(SkCanvas* canvas) override;
 
-            void setHeight(SkScalar height);
+  void setHeight(SkScalar height);
 
-            void setWidth(SkScalar width);
-        private:
-            std::unique_ptr<SkCanvas> allocCanvas();
+  void setWidth(SkScalar width);
 
-            Direction direction_;
+ private:
+  std::unique_ptr<SkCanvas> allocCanvas();
 
-            std::vector<std::shared_ptr<View>> children_;
+  Direction direction_;
 
-            // this bitmap will store all the information
-            std::unique_ptr<SkBitmap> bitmap_;
+  std::vector<std::shared_ptr<View>> children_;
 
-            SkScalar getHeight();
+  // this bitmap will store all the information
+  std::unique_ptr<SkBitmap> bitmap_;
 
-            SkScalar getWidth();
+  SkScalar getHeight();
 
-            void updateLayout();
+  SkScalar getWidth();
 
-            SkRect calculateDimensions();
-        };
+  void updateLayout();
 
-    }
+  SkRect calculateDimensions();
+};
+}
 }
 
-#endif //HELLOWORLD_LINEARLAYOUT_H
+#endif  // HELLOWORLD_LINEARLAYOUT_H

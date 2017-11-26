@@ -5,9 +5,9 @@
 #include "FrameCaptureEventListener.h"
 
 namespace avenger {
-    namespace hawkeye {
-        void FrameCaptureEventListener::onEvent(std::shared_ptr<Event> event) {
-            onCapture((FrameCaptureEvent*)event.get());
-        }
-    }
+namespace hawkeye {
+void FrameCaptureEventListener::onEvent(std::shared_ptr<Event> event) {
+  onCapture((FrameCaptureEvent*)event.get());
+}
+}
 }

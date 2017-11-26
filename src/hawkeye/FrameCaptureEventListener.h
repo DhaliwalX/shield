@@ -8,15 +8,14 @@
 #include "FrameCaptureEvent.h"
 
 namespace avenger {
-    namespace hawkeye {
-        class FrameCaptureEventListener : public EventListener {
-        public:
-            virtual void onCapture(FrameCaptureEvent *event) = 0;
+namespace hawkeye {
+class FrameCaptureEventListener : public EventListener {
+ public:
+  virtual void onCapture(FrameCaptureEvent* event) = 0;
 
-            void onEvent(std::shared_ptr<Event> event) override;
-        };
-    }
+  void onEvent(std::shared_ptr<Event> event) override;
+};
+}
 }
 
-
-#endif //HELLOWORLD_FRAMECAPTUREEVENTLISTENER_H
+#endif  // HELLOWORLD_FRAMECAPTUREEVENTLISTENER_H

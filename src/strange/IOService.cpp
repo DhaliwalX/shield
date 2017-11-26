@@ -4,10 +4,8 @@
 
 #include "IOService.h"
 
-avenger::strange::IOService::IOService() : service_{} {
+avenger::strange::IOService::IOService() : service_{} {}
 
-}
-
-boost::asio::io_service &avenger::strange::IOService::getService() {
-    return service_;
+boost::asio::io_service& avenger::strange::IOService::getService() {
+  return service_;
 }

@@ -5,33 +5,32 @@
 #include "ConnectionEvent.h"
 
 namespace avenger {
-    namespace strange {
+namespace strange {
 
-        ConnectionEvent::ConnectionEvent(std::shared_ptr<TCPConnection> connection)
-            : connection_{std::move(connection)}
-        { }
+std::unique_ptr<EventMetadata> ConnectionEvent::metadata_;
 
-        EventMetadata *ConnectionEvent::getMetadata() {
-            return metadata_.get();
-        }
+ConnectionEvent::ConnectionEvent(std::shared_ptr<TCPConnection> connection)
+    : connection_{std::move(connection)} {}
 
-        void ConnectionEvent::Init() {
-            metadata_ = std::make_unique<EventMetadata>();
-        }
+EventMetadata* ConnectionEvent::getMetadata() {
+  return metadata_.get();
+}
 
-        void ConnectionEvent::Subscribe(ConnectionEventListener *listener) {
-            metadata_->registerListener(listener);
-        }
+void ConnectionEvent::Init() {
+  metadata_ = std::make_unique<EventMetadata>();
+}
 
-        TCPConnection::pointer ConnectionEvent::getConnection() {
-            return connection_;
-        }
+void ConnectionEvent::Subscribe(ConnectionEventListener* listener) {
+  metadata_->registerListener(listener);
+}
 
-        std::shared_ptr<ConnectionEvent> ConnectionEvent::Make(std::shared_ptr<TCPConnection> connection) {
-            return std::make_shared<ConnectionEvent>(connection);
-        }
+TCPConnection::pointer ConnectionEvent::getConnection() {
+  return connection_;
+}
 
-
-    }
-
+std::shared_ptr<ConnectionEvent> ConnectionEvent::Make(
+    std::shared_ptr<TCPConnection> connection) {
+  return std::make_shared<ConnectionEvent>(connection);
+}
+}
 }

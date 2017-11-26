@@ -9,10 +9,10 @@
 #include "Event.h"
 
 namespace avenger {
-    // dispatch the event which will notify all the listeners
-    // Did you notice?
-    //    ...only those having shield context are allowed to dispatch ;-)
-    void dispatch(SHIELD *shield, std::shared_ptr<Event> event);
+// dispatch the event which will notify all the listeners
+// Did you notice?
+//    ...only those having shield context are allowed to dispatch ;-)
+void dispatch(SHIELD* shield, std::shared_ptr<Event> event);
 }
 
-#endif //HELLOWORLD_DISPATCHER_H
+#endif  // HELLOWORLD_DISPATCHER_H

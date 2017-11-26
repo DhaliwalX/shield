@@ -6,20 +6,20 @@
 #include "hawkeye/HawkeyeView.h"
 
 namespace avenger {
-    namespace scarlet {
+namespace scarlet {
 
-        class Captain : public App {
-        public:
-            Captain();
+class Captain : public App {
+ public:
+  Captain();
 
-            ~Captain();
+  ~Captain();
 
-            void onCreate(SkCanvas *canvas) override;
+  void onCreate(SkCanvas* canvas) override;
 
-        private:
-            std::shared_ptr<avenger::hawkeye::HawkeyeView> camera;
-        };
-    }
+ private:
+  std::shared_ptr<avenger::hawkeye::HawkeyeView> camera;
+};
+}
 }
 
-#endif //HELLOWORLD_MAINAPP_H
+#endif  // HELLOWORLD_MAINAPP_H

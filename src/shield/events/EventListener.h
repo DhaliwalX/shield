@@ -8,14 +8,14 @@
 #include <memory>
 
 namespace avenger {
-    class Event;
+class Event;
 
-    class EventListener {
-    public:
-        virtual ~EventListener() = default;
+class EventListener {
+ public:
+  virtual ~EventListener() = default;
 
-        virtual void onEvent(std::shared_ptr<Event> event) = 0;
-    };
+  virtual void onEvent(std::shared_ptr<Event> event) = 0;
+};
 }
 
-#endif //HELLOWORLD_EVENTSUBSCRIBER_H
+#endif  // HELLOWORLD_EVENTSUBSCRIBER_H

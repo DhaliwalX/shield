@@ -7,11 +7,8 @@
 
 template <class Camera>
 class CameraView {
-public:
-
-private:
-
+ public:
+ private:
 };
 
-
-#endif //HELLOWORLD_CAMERAVIEW_H
+#endif  // HELLOWORLD_CAMERAVIEW_H

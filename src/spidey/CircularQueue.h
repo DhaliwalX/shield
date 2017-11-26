@@ -5,10 +5,6 @@
 #ifndef HELLOWORLD_CIRCULARQUEUE_H
 #define HELLOWORLD_CIRCULARQUEUE_H
 
+class CircularQueue {};
 
-class CircularQueue {
-
-};
-
-
-#endif //HELLOWORLD_CIRCULARQUEUE_H
+#endif  // HELLOWORLD_CIRCULARQUEUE_H

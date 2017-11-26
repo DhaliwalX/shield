@@ -10,29 +10,28 @@
 
 namespace avenger {
 
-    // used for storing global and various other utility information
-    // like state of the application.
-    class SHIELD {
-    public:
-        static const int kSHIELDCameraWidth = 640;
-        static const int kSHIELDCameraHeight = 360;
+// used for storing global and various other utility information
+// like state of the application.
+class SHIELD {
+ public:
+  static const int kSHIELDCameraWidth = 640;
+  static const int kSHIELDCameraHeight = 360;
 
-        SHIELD();
+  SHIELD();
 
-        ~SHIELD();
+  ~SHIELD();
 
-        void postEvent(std::shared_ptr<Event> event);
+  void postEvent(std::shared_ptr<Event> event);
 
-        static void Init();
-        static void Destroy();
-        static SHIELD *GetInstance();
-    private:
-        Processor eventProcessor_;
+  static void Init();
+  static void Destroy();
+  static SHIELD* GetInstance();
 
-        static SHIELD *shield;
-    };
+ private:
+  Processor eventProcessor_;
 
+  static SHIELD* shield;
+};
 }
 
-
-#endif //HELLOWORLD_SHIELD_H
+#endif  // HELLOWORLD_SHIELD_H

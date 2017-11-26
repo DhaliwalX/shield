@@ -8,18 +8,17 @@
 #include <shield/events/EventListener.h>
 
 namespace avenger {
-    namespace strange {
+namespace strange {
 
-        class ConnectionEvent;
+class ConnectionEvent;
 
-        class ConnectionEventListener : public EventListener {
-        public:
-            virtual void onNewConnection(std::shared_ptr<ConnectionEvent> event) = 0;
+class ConnectionEventListener : public EventListener {
+ public:
+  virtual void onNewConnection(std::shared_ptr<ConnectionEvent> event) = 0;
 
-            void onEvent(std::shared_ptr<Event> event) override final;
-        };
-
-    }
+  void onEvent(std::shared_ptr<Event> event) override final;
+};
+}
 }
 
-#endif //HELLOWORLD_CONNECTIONEVENTLISTENER_H
+#endif  // HELLOWORLD_CONNECTIONEVENTLISTENER_H

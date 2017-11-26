@@ -9,29 +9,28 @@
 #include "View.h"
 
 namespace avenger {
-    namespace scarlet {
-        class App {
-        public:
-            App() : root{nullptr}, dimensions{} {}
+namespace scarlet {
+class App {
+ public:
+  App() : root{nullptr}, dimensions{} {}
 
-            virtual ~App() {}
-            virtual void onCreate(SkCanvas *canvas) = 0;
+  virtual ~App() {}
+  virtual void onCreate(SkCanvas* canvas) = 0;
 
-            virtual void onForceUpdate(GlContext *context) {};
+  virtual void onForceUpdate(GlContext* context){};
 
-            void setRootView(std::shared_ptr<View> view);
+  void setRootView(std::shared_ptr<View> view);
 
-            void setDimensions(const SkRect &rect);
-            SkRect &getDimensions();
+  void setDimensions(const SkRect& rect);
+  SkRect& getDimensions();
 
-            void draw(SkCanvas *canvas);
-        private:
-            std::shared_ptr<View> root;
-            SkRect dimensions;
-        };
+  void draw(SkCanvas* canvas);
 
-    }
+ private:
+  std::shared_ptr<View> root;
+  SkRect dimensions;
+};
+}
 }
 
-
-#endif //HELLOWORLD_APP_H
+#endif  // HELLOWORLD_APP_H

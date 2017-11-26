@@ -8,20 +8,18 @@
 #include <boost/asio/io_service.hpp>
 
 namespace avenger {
-    namespace strange {
-        // simple wrapper over boost asio::io_service
-        class IOService {
-        public:
-            IOService();
+namespace strange {
+// simple wrapper over boost asio::io_service
+class IOService {
+ public:
+  IOService();
 
-            boost::asio::io_service &getService();
+  boost::asio::io_service& getService();
 
-        private:
-            boost::asio::io_service service_;
-        };
-
-    }
+ private:
+  boost::asio::io_service service_;
+};
+}
 }
 
-
-#endif //ARDUINONETWORKING_IOSERVICE_H
+#endif  // ARDUINONETWORKING_IOSERVICE_H

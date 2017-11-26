@@ -10,27 +10,26 @@
 #include "TCPConnection.h"
 
 namespace avenger {
-    namespace strange {
+namespace strange {
 
-        class Server {
-        public:
-            Server(IOService &service, unsigned short port);
+class Server {
+ public:
+  Server(IOService& service, unsigned short port);
 
-            void startListening();
+  void startListening();
 
-        private:
-            void handleNewConnection(TCPConnection::pointer connection,
-                            const boost::system::error_code &ec);
+ private:
+  void handleNewConnection(TCPConnection::pointer connection,
+                           const boost::system::error_code& ec);
 
-            // order matters here
-            IOService &service_;
-            boost::asio::ip::tcp::endpoint endpoint_;
-            boost::asio::ip::tcp::acceptor acceptor_;
+  // order matters here
+  IOService& service_;
+  boost::asio::ip::tcp::endpoint endpoint_;
+  boost::asio::ip::tcp::acceptor acceptor_;
 
-            void acceptConnection();
-        };
-
-    }
+  void acceptConnection();
+};
+}
 }
 
-#endif //ARDUINONETWORKING_SERVER_H
+#endif  // ARDUINONETWORKING_SERVER_H

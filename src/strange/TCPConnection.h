@@ -11,29 +11,28 @@
 #include <boost/asio/ip/tcp.hpp>
 
 namespace avenger {
-    namespace strange {
-        class TCPConnection : public std::enable_shared_from_this<TCPConnection> {
-        public:
-            using pointer = std::shared_ptr<TCPConnection>;
+namespace strange {
+class TCPConnection : public std::enable_shared_from_this<TCPConnection> {
+ public:
+  using pointer = std::shared_ptr<TCPConnection>;
 
-            explicit TCPConnection(boost::asio::io_service &service);
+  explicit TCPConnection(boost::asio::io_service& service);
 
-            static pointer Create(IOService &service);
+  static pointer Create(IOService& service);
 
-            boost::asio::ip::tcp::iostream &stream();
-            boost::asio::ip::tcp::socket &socket();
+  boost::asio::ip::tcp::iostream& stream();
+  boost::asio::ip::tcp::socket& socket();
 
-            void handleWrite(const boost::system::error_code &ec, size_t transfered);
+  void handleWrite(const boost::system::error_code& ec, size_t transfered);
 
-            void debug();
-        private:
-            boost::asio::ip::tcp::iostream stream_;
-            boost::asio::ip::tcp::socket socket_;
-            boost::asio::io_service &service_;
-        };
-    }
+  void debug();
+
+ private:
+  boost::asio::ip::tcp::iostream stream_;
+  boost::asio::ip::tcp::socket socket_;
+  boost::asio::io_service& service_;
+};
+}
 }
 
-
-
-#endif //ARDUINONETWORKING_TCPCONNECTOR_H
+#endif  // ARDUINONETWORKING_TCPCONNECTOR_H

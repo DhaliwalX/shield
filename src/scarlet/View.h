@@ -6,82 +6,79 @@
 
 class SkCanvas;
 namespace avenger {
-    namespace scarlet {
-        class LayoutParams {
-        public:
-            static std::unique_ptr<LayoutParams> MakeDefault();
+namespace scarlet {
+class LayoutParams {
+ public:
+  static std::unique_ptr<LayoutParams> MakeDefault();
 
-            static std::unique_ptr<LayoutParams> MakeSkRect(const SkRect &rect);
+  static std::unique_ptr<LayoutParams> MakeSkRect(const SkRect& rect);
 
-            LayoutParams() = default;
-            virtual ~LayoutParams() = default;
+  LayoutParams() = default;
+  virtual ~LayoutParams() = default;
 
-            virtual void setBounds(SkRect bounds) {
-                bounds_ = bounds;
-            }
+  virtual void setBounds(SkRect bounds) { bounds_ = bounds; }
 
-            virtual SkRect &getBounds() {
-                return bounds_;
-            }
+  virtual SkRect& getBounds() { return bounds_; }
 
-            void setHeight(SkScalar height);
+  void setHeight(SkScalar height);
 
-            void setWidth(SkScalar width);
+  void setWidth(SkScalar width);
 
-            void setX(SkScalar x);
+  void setX(SkScalar x);
 
-            void setY(SkScalar y);
+  void setY(SkScalar y);
 
-            void setPadding(SkRect padding);
+  void setPadding(SkRect padding);
 
-            void setMargin(SkRect margin);
+  void setMargin(SkRect margin);
 
-            SkRect getPadding();
+  SkRect getPadding();
 
-            SkRect getMargin();
+  SkRect getMargin();
 
-            virtual void patchWH(const SkRect &rect);
+  virtual void patchWH(const SkRect& rect);
 
-            virtual const SkRect &getBounds() const {
-                return bounds_;
-            }
+  virtual const SkRect& getBounds() const { return bounds_; }
 
-            SkScalar getHeight();
-            SkScalar getWidth();
-            SkScalar getX();
-            SkScalar getY();
-        private:
-            SkRect bounds_{};
-            SkRect padding_{};
-            SkRect margin_{};
-        };
+  SkScalar getHeight();
+  SkScalar getWidth();
+  SkScalar getX();
+  SkScalar getY();
 
-        class View {
-        protected:
-            View();
-        public:
-            virtual ~View() = default;
+ private:
+  SkRect bounds_{};
+  SkRect padding_{};
+  SkRect margin_{};
+};
 
-            virtual void onCreate(SkCanvas *canvas) = 0;
+class View {
+ protected:
+  View();
 
-            virtual void onDestroy();
+ public:
+  virtual ~View() = default;
 
-            virtual LayoutParams *getLayoutParams();
+  virtual void onCreate(SkCanvas* canvas) = 0;
 
-            void draw(SkCanvas *canvas);
+  virtual void onDestroy();
 
-        protected:
-            virtual void setLayoutParams(std::unique_ptr<LayoutParams> params);
+  virtual LayoutParams* getLayoutParams();
 
-            void setDirty(bool dirty);
-            bool isDirty();
-        public:
-            std::unique_ptr<LayoutParams> layoutParams_;
+  void draw(SkCanvas* canvas);
 
-        private:
-            bool dirty_;
-        };
-    }
+ protected:
+  virtual void setLayoutParams(std::unique_ptr<LayoutParams> params);
+
+  void setDirty(bool dirty);
+  bool isDirty();
+
+ public:
+  std::unique_ptr<LayoutParams> layoutParams_;
+
+ private:
+  bool dirty_;
+};
+}
 }
 
-#endif //HELLOWORLD_VIEW_H
+#endif  // HELLOWORLD_VIEW_H

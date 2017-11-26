@@ -9,64 +9,58 @@
 #include "NativeWindow.h"
 namespace avenger {
 
-    namespace scarlet {
-        class ScreenDesc {
-        public:
-            ScreenDesc(uint16_t width, uint16_t height)
-                    : width_{width}, height_{height} {}
+namespace scarlet {
+class ScreenDesc {
+ public:
+  ScreenDesc(uint16_t width, uint16_t height)
+      : width_{width}, height_{height} {}
 
-            const uint16_t &getWidth() const {
-                return width_;
-            }
+  const uint16_t& getWidth() const { return width_; }
 
-            const uint16_t &getHeight() const {
-                return height_;
-            }
+  const uint16_t& getHeight() const { return height_; }
 
-            void setHeight(uint16_t height) {
-                this->height_ = height;
-            }
+  void setHeight(uint16_t height) { this->height_ = height; }
 
-            void setWidth(uint16_t width) {
-                this->width_ = width;
-            }
+  void setWidth(uint16_t width) { this->width_ = width; }
 
-        private:
-            uint16_t width_;
-            uint16_t height_;
-        };
+ private:
+  uint16_t width_;
+  uint16_t height_;
+};
 
-        class NativeWindowFactory;
+class NativeWindowFactory;
 
-        class GlContext {
-        public:
-            void printDebugInfo(NativeWindow *window);
+class GlContext {
+ public:
+  void printDebugInfo(NativeWindow* window);
 
-            explicit GlContext(const ScreenDesc &desc, NativeWindowFactory *factory)
-                    : screenDesc{desc}, windowFactory_{factory} {}
+  explicit GlContext(const ScreenDesc& desc, NativeWindowFactory* factory)
+      : screenDesc{desc}, windowFactory_{factory} {}
 
-        public:
+ public:
+  static std::shared_ptr<GlContext> Make(int* argc, char** argv);
 
-            static std::shared_ptr<GlContext> Make(int *argc, char **argv);
+  std::shared_ptr<NativeWindow> makeWindow(uint16_t width,
+                                           uint16_t height,
+                                           uint16_t x,
+                                           uint16_t y);
 
-            std::shared_ptr<NativeWindow> makeWindow(uint16_t width, uint16_t height, uint16_t x, uint16_t y);
+  std::shared_ptr<NativeWindow> makeWindow();
 
-            std::shared_ptr<NativeWindow> makeWindow();
+  ~GlContext();
 
-            ~GlContext();
+  void swapBuffers(int windowId);
 
-            void swapBuffers(int windowId);
+  void resizeWindow(NativeWindow* window, int w, int h);
 
-            void resizeWindow(NativeWindow *window, int w, int h);
+ private:
+  ScreenDesc screenDesc;
 
-        private:
-            ScreenDesc screenDesc;
+  // keeps the implmentation of native window independent of platform
+  NativeWindowFactory* windowFactory_;
+};
 
-            // keeps the implmentation of native window independent of platform
-            NativeWindowFactory *windowFactory_;
-        };
-
-    } // ui
+}  // ui
 }
 
-#endif //HELLOWORLD_GLCONTEXT_H
+#endif  // HELLOWORLD_GLCONTEXT_H

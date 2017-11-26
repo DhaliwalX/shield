@@ -5,6 +5,7 @@
 #include "ConnectionEventListener.h"
 #include "ConnectionEvent.h"
 
-void avenger::strange::ConnectionEventListener::onEvent(std::shared_ptr<avenger::Event> event) {
-    onNewConnection((std::dynamic_pointer_cast<ConnectionEvent>(event)));
+void avenger::strange::ConnectionEventListener::onEvent(
+    std::shared_ptr<avenger::Event> event) {
+  onNewConnection((std::dynamic_pointer_cast<ConnectionEvent>(event)));
 }

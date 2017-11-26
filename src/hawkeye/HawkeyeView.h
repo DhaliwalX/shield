@@ -14,24 +14,24 @@
 #include "FrameCaptureEventListener.h"
 
 namespace avenger {
-    namespace hawkeye {
+namespace hawkeye {
 
-        class HawkeyeView : public scarlet::View, public FrameCaptureEventListener {
-        public:
-            HawkeyeView();
+class HawkeyeView : public scarlet::View, public FrameCaptureEventListener {
+ public:
+  HawkeyeView();
 
-            void onCreate(SkCanvas *canvas) override;
+  void onCreate(SkCanvas* canvas) override;
 
-            void onCapture(FrameCaptureEvent *event) override;
-        private:
-            std::shared_ptr<cv::Mat> currentFrame_;
-            SkBitmap store_;
-            BitmapRef bitmapCache_;
+  void onCapture(FrameCaptureEvent* event) override;
 
-            std::mutex lock_;
-        };
+ private:
+  std::shared_ptr<cv::Mat> currentFrame_;
+  SkBitmap store_;
+  BitmapRef bitmapCache_;
 
-    }
+  std::mutex lock_;
+};
+}
 }
 
-#endif //HELLOWORLD_HAWKEYEVIEW_H
+#endif  // HELLOWORLD_HAWKEYEVIEW_H

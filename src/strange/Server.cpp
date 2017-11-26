@@ -13,41 +13,38 @@
 
 using namespace boost::asio::ip;
 namespace avenger {
-    namespace strange {
+namespace strange {
 
-        Server::Server(avenger::strange::IOService &service, unsigned short port)
-            : service_{service},
-              endpoint_(tcp::v4(), port),
-              acceptor_(service.getService(), endpoint_)
-        { }
+Server::Server(avenger::strange::IOService& service, unsigned short port)
+    : service_{service},
+      endpoint_(tcp::v4(), port),
+      acceptor_(service.getService(), endpoint_) {}
 
-        void Server::handleNewConnection(TCPConnection::pointer connection,
-                            const boost::system::error_code &error_code) {
-            if (error_code) {
-                fprintf(stderr, "ConnectionError:%s:%d: %s\n", __FILE__,
-                        __LINE__, error_code.message().c_str());
-                return;
-            }
-            auto event = ConnectionEvent::Make(std::move(connection));
-            dispatch(SHIELD::GetInstance(), event);
+void Server::handleNewConnection(TCPConnection::pointer connection,
+                                 const boost::system::error_code& error_code) {
+  if (error_code) {
+    fprintf(stderr, "ConnectionError:%s:%d: %s\n", __FILE__, __LINE__,
+            error_code.message().c_str());
+    return;
+  }
+  auto event = ConnectionEvent::Make(std::move(connection));
+  dispatch(SHIELD::GetInstance(), event);
 
-            // wait for next connection
-            acceptConnection();
-        }
+  // wait for next connection
+  acceptConnection();
+}
 
-        void Server::acceptConnection() {
+void Server::acceptConnection() {
+  auto connection = TCPConnection::Create(service_);
 
-            auto connection = TCPConnection::Create(service_);
+  acceptor_.async_accept(
+      connection->socket(),
+      boost::bind(&Server::handleNewConnection, this, connection,
+                  boost::asio::placeholders::error));
+}
 
-            acceptor_.async_accept(connection->socket(),
-                                   boost::bind(&Server::handleNewConnection,
-                                               this,
-                                               connection,
-                                               boost::asio::placeholders::error));
-        }
-
-        void Server::startListening() {
-            acceptConnection();
-        }
-    }
+void Server::startListening() {
+  acceptConnection();
+}
+}
 }

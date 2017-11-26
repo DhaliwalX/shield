@@ -12,54 +12,55 @@
 #include <SkPaint.h>
 
 namespace avenger {
-    namespace scarlet {
+namespace scarlet {
 
-        struct FontMetadata;
+struct FontMetadata;
 
-        class TextViewData {
-            friend class TextView;
-        public:
-            explicit TextViewData(const std::string &text_);
+class TextViewData {
+  friend class TextView;
 
-            ~TextViewData();
+ public:
+  explicit TextViewData(const std::string& text_);
 
-            void setText(const std::string &text_);
+  ~TextViewData();
 
-            void setFont(const std::string &fontName);
+  void setText(const std::string& text_);
 
-            void setFontSize(SkScalar scalar);
+  void setFont(const std::string& fontName);
 
-            SkRect getBounds();
+  void setFontSize(SkScalar scalar);
 
-        private:
-            std::string text_;
-            FontMetadata *metadata_;
-        };
+  SkRect getBounds();
 
-        // simple TextView class to
-        class TextView : public View {
-        public:
-            TextView();
-            explicit TextView(const std::string &text);
+ private:
+  std::string text_;
+  FontMetadata* metadata_;
+};
 
-            void setText(const std::string &text);
+// simple TextView class to
+class TextView : public View {
+ public:
+  TextView();
+  explicit TextView(const std::string& text);
 
-            void onCreate(SkCanvas *canvas) override;
+  void setText(const std::string& text);
 
-            void setFont(const std::string &fontName);
+  void onCreate(SkCanvas* canvas) override;
 
-            void setColor(SkColor color);
+  void setFont(const std::string& fontName);
 
-            void setPaint(SkPaint paint);
+  void setColor(SkColor color);
 
-            void setFontSize(SkScalar scalar);
-        private:
-            void updateLayoutParams();
+  void setPaint(SkPaint paint);
 
-            TextViewData data_;
-        };
+  void setFontSize(SkScalar scalar);
 
-    }
+ private:
+  void updateLayoutParams();
+
+  TextViewData data_;
+};
+}
 }
 
-#endif //HELLOWORLD_TEXTVIEW_H
+#endif  // HELLOWORLD_TEXTVIEW_H

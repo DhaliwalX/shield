@@ -4,17 +4,13 @@
 #include "View.h"
 
 namespace avenger {
-    namespace scarlet {
+namespace scarlet {
 
-        class FlexView : public View {
-        public:
-
-        private:
-
-        };
-
-    }
+class FlexView : public View {
+ public:
+ private:
+};
+}
 }
 
-
-#endif //HELLOWORLD_FLEXVIEW_H
+#endif  // HELLOWORLD_FLEXVIEW_H

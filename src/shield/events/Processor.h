@@ -12,28 +12,28 @@
 
 namespace avenger {
 
-    // for processing events, it takes a event from event queue and processes it
-    // in a separate thread
-    class Processor {
-    public:
-        Processor();
+// for processing events, it takes a event from event queue and processes it
+// in a separate thread
+class Processor {
+ public:
+  Processor();
 
-        void nextTick(Task event);
+  void nextTick(Task event);
 
-        void startMonitoring();
+  void startMonitoring();
 
-        void waitExecuteLoop();
+  void waitExecuteLoop();
 
-        void processOne();
-    private:
-        TaskQueue queue_;
-        std::mutex lock_;
-        std::condition_variable var_;
-        bool more_;
+  void processOne();
 
-        std::unique_ptr<std::thread> processorThread_;
-    };
+ private:
+  TaskQueue queue_;
+  std::mutex lock_;
+  std::condition_variable var_;
+  bool more_;
+
+  std::unique_ptr<std::thread> processorThread_;
+};
 }
 
-
-#endif //HELLOWORLD_PROCESSOR_H
+#endif  // HELLOWORLD_PROCESSOR_H
