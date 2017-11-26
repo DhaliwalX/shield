@@ -5,7 +5,7 @@
 #ifndef ARDUINONETWORKING_TCPCONNECTOR_H
 #define ARDUINONETWORKING_TCPCONNECTOR_H
 
-#include "IOService.h"
+#include "shield/IOService.h"
 #include <string>
 #include <boost/enable_shared_from_this.hpp>
 #include <boost/asio/ip/tcp.hpp>

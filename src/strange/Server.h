@@ -6,7 +6,7 @@
 #define ARDUINONETWORKING_SERVER_H
 
 #include <boost/asio/ip/tcp.hpp>
-#include "IOService.h"
+#include "shield/IOService.h"
 #include "TCPConnection.h"
 
 namespace avenger {
