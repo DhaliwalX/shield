@@ -12,25 +12,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d75033e-6401-4641-92db-6ec56840beb2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/reed/TelematicsView.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/reed/TelematicsView.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="$PROJECT_DIR$/.idea/.name" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hawkeye/Camera.cpp" afterPath="$PROJECT_DIR$/src/hawkeye/Camera.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hawkeye/HawkeyeView.cpp" afterPath="$PROJECT_DIR$/src/hawkeye/HawkeyeView.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reed/TelematicsEvent.cpp" afterPath="$PROJECT_DIR$/src/reed/TelematicsEvent.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reed/TelematicsEvent.h" afterPath="$PROJECT_DIR$/src/reed/TelematicsEvent.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reed/telemetics/BotTelematics.h" afterPath="$PROJECT_DIR$/src/reed/telemetics/BotTelematics.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scarlet/App.cpp" afterPath="$PROJECT_DIR$/src/scarlet/App.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scarlet/App.h" afterPath="$PROJECT_DIR$/src/scarlet/App.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scarlet/LinearLayout.cpp" afterPath="$PROJECT_DIR$/src/scarlet/LinearLayout.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scarlet/LinearLayout.h" afterPath="$PROJECT_DIR$/src/scarlet/LinearLayout.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scarlet/TextView.cpp" afterPath="$PROJECT_DIR$/src/scarlet/TextView.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scarlet/TextView.h" afterPath="$PROJECT_DIR$/src/scarlet/TextView.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scarlet/View.h" afterPath="$PROJECT_DIR$/src/scarlet/View.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shield/Captain.cpp" afterPath="$PROJECT_DIR$/src/shield/Captain.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shield/Captain.h" afterPath="$PROJECT_DIR$/src/shield/Captain.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shield/events/Processor.cpp" afterPath="$PROJECT_DIR$/src/shield/events/Processor.cpp" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -373,7 +356,7 @@
       <workItem from="1511711435606" duration="2857000" />
       <workItem from="1511720391442" duration="1365000" />
       <workItem from="1511724811783" duration="9077000" />
-      <workItem from="1511735387720" duration="12681000" />
+      <workItem from="1511735387720" duration="12921000" />
     </task>
     <task id="LOCAL-00001" summary="Moved IOService to the shield.&#10;&#10;IOService is common to all the boost related asio&#10;services which means other parts which are using&#10;boost::asio should be able to use it.">
       <created>1511723267602</created>
@@ -389,11 +372,18 @@
       <option name="project" value="LOCAL" />
       <updated>1511734374962</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Bug Fixes and much more.&#10;&#10; - Default black color for CameraView&#10; - TelematicsEvent should be fired only to those who have same bot id as of event&#10; - Added TelematicsView for UI&#10; - App now inherits View&#10; - Layout should update child only when child is dirty.&#10; - Added option of font style&#10; - onCreate should be called only once">
+      <created>1511781683007</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1511781683007</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="138402000" />
+    <option name="totallyTimeSpent" value="138642000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
@@ -453,7 +443,8 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Moved IOService to the shield.&#10;&#10;IOService is common to all the boost related asio&#10;services which means other parts which are using&#10;boost::asio should be able to use it." />
     <MESSAGE value="Added BotTelematics and Controller code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added BotTelematics and Controller code" />
+    <MESSAGE value="Bug Fixes and much more.&#10;&#10; - Default black color for CameraView&#10; - TelematicsEvent should be fired only to those who have same bot id as of event&#10; - Added TelematicsView for UI&#10; - App now inherits View&#10; - Layout should update child only when child is dirty.&#10; - Added option of font style&#10; - onCreate should be called only once" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug Fixes and much more.&#10;&#10; - Default black color for CameraView&#10; - TelematicsEvent should be fired only to those who have same bot id as of event&#10; - Added TelematicsView for UI&#10; - App now inherits View&#10; - Layout should update child only when child is dirty.&#10; - Added option of font style&#10; - onCreate should be called only once" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

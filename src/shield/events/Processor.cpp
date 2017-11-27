@@ -3,12 +3,13 @@
 //
 
 #include <iostream>
+#include <chrono>
+#include "shield/timer/Time.h"
 #include "Processor.h"
 
 avenger::Processor::Processor() {}
 
 void avenger::Processor::nextTick(Task event) {
-  std::unique_lock<std::mutex> lk(lock_);
   queue_.add(event);
   more_ = true;
   var_.notify_one();
@@ -20,23 +21,16 @@ void avenger::Processor::startMonitoring() {
 }
 
 void avenger::Processor::waitExecuteLoop() {
-  {
     while (true) {
-      std::unique_lock<std::mutex> lk(lock_);
-      var_.wait(lk);
+      // wait for some task
+      while (queue_.empty());
 
-      while (more_) {
-        processOne();
-      }
+      // process one
+      processOne();
     }
-  }
 }
 
 void avenger::Processor::processOne() {
-  if (queue_.empty()) {
-    more_ = false;
-    return;
-  }
   auto task = queue_.pull();
   task.execute();
 }
