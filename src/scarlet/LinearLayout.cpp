@@ -38,12 +38,6 @@ std::unique_ptr<SkCanvas> LinearLayout::allocCanvas() {
 }
 
 void LinearLayout::onCreate(SkCanvas* can) {
-  if (!isDirty()) {
-    can->drawBitmap(*bitmap_, getLayoutParams()->getX(),
-                    getLayoutParams()->getY());
-    return;
-  }
-
   updateLayout();
   auto canHandle = allocCanvas();
   auto canvas = canHandle.get();
@@ -61,7 +55,8 @@ void LinearLayout::onCreate(SkCanvas* can) {
         break;
     }
 
-    child->draw(canvas);
+    if (child->isDirty())
+      child->draw(canvas);
 
     // update the x,y and current dimensions of this structure
     switch (direction_) {

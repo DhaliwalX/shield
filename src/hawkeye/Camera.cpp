@@ -6,7 +6,11 @@
 #include <shield/events/dispatcher.h>
 #include <thread>
 #include <iostream>
+#include <opencv/cv.hpp>
+#include <chrono>
 #include "Camera.h"
+#include "shield/timer/Time.h"
+
 namespace avenger {
 namespace hawkeye {
 
@@ -34,16 +38,15 @@ void Camera::addListener(FrameCaptureEventListener* listener) {
 }
 
 bool Camera::openCamera(int cameraNumber) {
-  capture = std::make_unique<cv::VideoCapture>();
-  capture->open(cameraNumber);
+  capture = std::make_unique<cv::VideoCapture>(0);
 
   if (!capture->isOpened()) {
     return false;
   }
+
+  printf("Starting camera at %dx%d\n", descriptor_.width_, descriptor_.height_);
   capture->set(CV_CAP_PROP_FRAME_HEIGHT, descriptor_.height_);
   capture->set(CV_CAP_PROP_FRAME_WIDTH, descriptor_.width_);
-  capture->set(CV_CAP_PROP_FOURCC, CV_FOURCC('I', '4', '2', '0'));
-
   printf("Camera Frame Rate: %f\n", capture->get(CV_CAP_PROP_FPS));
   return capture->isOpened();
 }

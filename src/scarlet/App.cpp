@@ -11,7 +11,7 @@ void avenger::scarlet::App::setRootView(
 
 void avenger::scarlet::App::draw(SkCanvas* canvas) {
   this->onCreate(canvas);
-  if (canvas != nullptr && root) {
+  if (canvas != nullptr && root && isDirty()) {
     canvas->clear(SK_ColorLTGRAY);
     root->draw(canvas);
   }
@@ -19,6 +19,7 @@ void avenger::scarlet::App::draw(SkCanvas* canvas) {
 
 void avenger::scarlet::App::setDimensions(const SkRect& rect) {
   dimensions = rect;
+  getLayoutParams()->setBounds(rect);
 }
 
 SkRect& avenger::scarlet::App::getDimensions() {

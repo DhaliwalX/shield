@@ -26,6 +26,7 @@ class LinearLayout : public View {
 
   void setWidth(SkScalar width);
 
+  void updateLayout();
  private:
   std::unique_ptr<SkCanvas> allocCanvas();
 
@@ -39,8 +40,6 @@ class LinearLayout : public View {
   SkScalar getHeight();
 
   SkScalar getWidth();
-
-  void updateLayout();
 
   SkRect calculateDimensions();
 };

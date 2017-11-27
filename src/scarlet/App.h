@@ -10,12 +10,12 @@
 
 namespace avenger {
 namespace scarlet {
-class App {
+class App : public View {
  public:
   App() : root{nullptr}, dimensions{} {}
 
-  virtual ~App() {}
-  virtual void onCreate(SkCanvas* canvas) = 0;
+  ~App() override {}
+  void onCreate(SkCanvas* canvas) override = 0;
 
   virtual void onForceUpdate(GlContext* context){};
 
@@ -24,7 +24,7 @@ class App {
   void setDimensions(const SkRect& rect);
   SkRect& getDimensions();
 
-  void draw(SkCanvas* canvas);
+  void draw(SkCanvas* canvas) override;
 
  private:
   std::shared_ptr<View> root;

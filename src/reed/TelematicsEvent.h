@@ -18,6 +18,13 @@ class TelematicsEventListener : public EventListener {
  public:
   virtual void onUpdate(std::shared_ptr<TelematicsEvent> event) = 0;
   void onEvent(std::shared_ptr<Event> event) final;
+
+  virtual std::shared_ptr<Bot> bot() = 0;
+};
+
+class TelematicsEventMetadata : public EventMetadata {
+ public:
+  void notifyListeners(std::shared_ptr<Event> event) override;
 };
 
 class TelematicsEvent : public Event {

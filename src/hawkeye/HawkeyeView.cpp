@@ -25,13 +25,19 @@ void avenger::hawkeye::HawkeyeView::onCreate(SkCanvas* canvas) {
                                  SkScalarRoundToInt(layoutParams->getHeight()));
   actualImage.allocPixels(info);
 
+  actualImage.eraseColor(SK_ColorBLACK);
   SkCanvas imageCanvas(actualImage);
   SkMatrix matrix;
   matrix.setScale(layoutParams->getWidth() / currentFrame_->cols,
                   layoutParams->getHeight() / currentFrame_->rows);
   imageCanvas.setMatrix(matrix);
   imageCanvas.drawBitmap(store_, 0, 0);
+
+  canvas->save();
   canvas->drawBitmap(actualImage, layoutParams->getX(), layoutParams->getY());
+  canvas->restore();
+  canvas->flush();
+//  setDirty(false);
 }
 
 void avenger::hawkeye::HawkeyeView::onCapture(
@@ -39,6 +45,7 @@ void avenger::hawkeye::HawkeyeView::onCapture(
   std::lock_guard<std::mutex> guard(lock_);
   *currentFrame_ = *event->getCapturedFrame();
   convertMatToBitmap(&bitmapCache_, store_, *currentFrame_);
+//  setDirty(true);
 }
 
 avenger::hawkeye::HawkeyeView::HawkeyeView()

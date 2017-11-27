@@ -10,6 +10,7 @@
 #include <string>
 #include <SkColor.h>
 #include <SkPaint.h>
+#include <SkFontStyle.h>
 
 namespace avenger {
 namespace scarlet {
@@ -26,7 +27,7 @@ class TextViewData {
 
   void setText(const std::string& text_);
 
-  void setFont(const std::string& fontName);
+  void setFont(const std::string& fontName, const SkFontStyle &style);
 
   void setFontSize(SkScalar scalar);
 
@@ -55,6 +56,7 @@ class TextView : public View {
 
   void setFontSize(SkScalar scalar);
 
+  void setFont(const std::string &fontName, const SkFontStyle &style);
  private:
   void updateLayoutParams();
 

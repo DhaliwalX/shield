@@ -64,13 +64,13 @@ class View {
 
   virtual LayoutParams* getLayoutParams();
 
-  void draw(SkCanvas* canvas);
+  virtual void draw(SkCanvas* canvas);
 
+  bool isDirty();
  protected:
   virtual void setLayoutParams(std::unique_ptr<LayoutParams> params);
 
   void setDirty(bool dirty);
-  bool isDirty();
 
  public:
   std::unique_ptr<LayoutParams> layoutParams_;

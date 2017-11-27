@@ -2,6 +2,7 @@
 // Created by malcolm on 27/11/17.
 //
 
+#include <cassert>
 #include "TelematicsEvent.h"
 
 namespace avenger {
@@ -33,6 +34,23 @@ void TelematicsEvent::Init() {
 
 void TelematicsEvent::Subscribe(TelematicsEventListener *listener) {
   metadata_->registerListener(listener);
+}
+
+void TelematicsEventMetadata::notifyListeners(std::shared_ptr<Event> event) {
+  auto telematicsEvent = std::dynamic_pointer_cast<TelematicsEvent>(event);
+  assert(telematicsEvent && "telematics event should not be nullptr.");
+
+  for (auto listener : listeners_) {
+    auto telematicsListener = dynamic_cast<TelematicsEventListener*>(listener);
+
+    if (!telematicsListener) {
+      continue;
+    }
+
+    if (telematicsListener->bot() == telematicsEvent->bot()) {
+      telematicsListener->onUpdate(telematicsEvent);
+    }
+  }
 }
 
 }

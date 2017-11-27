@@ -14,6 +14,7 @@ struct BotTelematics {
   Location location{};
   TimePointMs timeStamp{};
 
+  BotTelematics() = default;
   BotTelematics(const BotTelematics &other) = default;
 };
 

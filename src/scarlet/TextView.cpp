@@ -9,6 +9,8 @@
 #include <SkCanvas.h>
 #include <SkBitmap.h>
 
+#include <utility>
+
 namespace avenger {
 namespace scarlet {
 
@@ -39,9 +41,9 @@ void TextViewData::setFontSize(SkScalar scalar) {
   metadata_->paint.setTextSize(scalar);
 }
 
-void TextViewData::setFont(const std::string& fontName) {
+void TextViewData::setFont(const std::string& fontName, const SkFontStyle &style) {
   auto typeface =
-      SkTypeface::MakeFromName(fontName.c_str(), SkFontStyle::Normal());
+      SkTypeface::MakeFromName(fontName.c_str(), style);
   metadata_->paint.setTypeface(typeface);
 }
 
@@ -71,7 +73,7 @@ TextView::TextView(const std::string& text) : data_{TextViewData(text)} {
 }
 
 void TextView::setFont(const std::string& fontName) {
-  data_.setFont(fontName);
+  setFont(fontName, SkFontStyle::Normal());
 }
 
 void TextView::setColor(SkColor color) {
@@ -82,5 +84,14 @@ void TextView::setFontSize(SkScalar scalar) {
   data_.setFontSize(scalar);
   updateLayoutParams();
 }
+
+void TextView::setPaint(SkPaint paint) {
+  data_.metadata_->paint = std::move(paint);
+}
+
+void TextView::setFont(const std::string &fontName, const SkFontStyle &style) {
+  data_.setFont(fontName, style);
+}
+
 }
 }
