@@ -21,6 +21,11 @@ class TelematicsMonitor {
 
   Location sampleAveragePosition();
   Velocity sampleAverageVelocity();
+
+  std::shared_ptr<Bot> &bot() { return bot_; }
+
+  static std::shared_ptr<TelematicsMonitor>
+            Make(std::shared_ptr<Bot> bot);
  private:
   void initializeUpdate();
   void finalizeUpdate(const BotTelematics &telematics);

@@ -47,6 +47,7 @@ bool Camera::openCamera(int cameraNumber) {
   printf("Starting camera at %dx%d\n", descriptor_.width_, descriptor_.height_);
   capture->set(CV_CAP_PROP_FRAME_HEIGHT, descriptor_.height_);
   capture->set(CV_CAP_PROP_FRAME_WIDTH, descriptor_.width_);
+  capture->set(CV_CAP_PROP_FPS, 60);
   printf("Camera Frame Rate: %f\n", capture->get(CV_CAP_PROP_FPS));
   return capture->isOpened();
 }
@@ -72,6 +73,11 @@ void Camera::captureLoop() {
 
     // create a FrameCaptureEvent and dispatch it
     auto event = std::make_shared<FrameCaptureEvent>(frame);
+
+    imshow("Live", *frame);
+    if (cv::waitKey(5) > 0) {
+      break;
+    };
     dispatch(SHIELD::GetInstance(), event);
   }
 }

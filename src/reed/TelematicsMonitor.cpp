@@ -65,10 +65,12 @@ Location TelematicsMonitor::sampleAveragePosition() {
   for (const auto &telematics : cache_.cache()) {
     location.x += telematics.location.x;
     location.y += telematics.location.y;
+    location.r += telematics.location.r;
   }
 
   location.x /= cache_.size();
   location.y /= cache_.size();
+  location.r /= cache_.size();
   return location;
 }
 
@@ -87,6 +89,11 @@ Velocity TelematicsMonitor::sampleAverageVelocity() {
   velocity.vx /= cache_.size();
   velocity.vy /= cache_.size();
   return velocity;
+}
+
+std::shared_ptr<TelematicsMonitor>
+TelematicsMonitor::Make(std::shared_ptr<Bot> bot) {
+  return std::make_shared<TelematicsMonitor>(bot);
 }
 
 }

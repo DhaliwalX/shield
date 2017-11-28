@@ -1,5 +1,7 @@
 #include "HawkeyeView.h"
 #include <SkCanvas.h>
+#include <chrono>
+#include <shield/timer/Time.h>
 
 void convertMatToBitmap(BitmapRef* bitmapCache,
                         SkBitmap& bitmap,
@@ -17,6 +19,8 @@ void convertMatToBitmap(BitmapRef* bitmapCache,
 }
 
 void avenger::hawkeye::HawkeyeView::onCreate(SkCanvas* canvas) {
+
+  std::lock_guard<std::mutex> guard(lock_);
   SkBitmap actualImage;
   avenger::scarlet::LayoutParams* layoutParams = getLayoutParams();
 
@@ -43,8 +47,14 @@ void avenger::hawkeye::HawkeyeView::onCreate(SkCanvas* canvas) {
 void avenger::hawkeye::HawkeyeView::onCapture(
     avenger::hawkeye::FrameCaptureEvent* event) {
   std::lock_guard<std::mutex> guard(lock_);
+
+  static int counter = 0;
+  auto past = avenger::Clock::now();
   *currentFrame_ = *event->getCapturedFrame();
   convertMatToBitmap(&bitmapCache_, store_, *currentFrame_);
+
+  auto duration = std::chrono::duration_cast<Milliseconds>(Clock::now() - past);
+  std::cout << counter++ << " Processing took " << duration.count() << " milliseconds" << std::endl;
 //  setDirty(true);
 }
 
