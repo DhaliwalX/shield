@@ -67,6 +67,8 @@ void Reed::processData(std::vector<DetectorResult> &result) {
       if (isPossibleRangeForBot(lastTelematics.location,
                                 location, duration.count())) {
         monitor->update(toLocation(location));
+      } else {
+        // TODO: write code here
       }
     }
   }

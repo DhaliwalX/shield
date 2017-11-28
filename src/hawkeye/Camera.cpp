@@ -44,11 +44,9 @@ bool Camera::openCamera(int cameraNumber) {
     return false;
   }
 
-  printf("Starting camera at %dx%d\n", descriptor_.width_, descriptor_.height_);
   capture->set(CV_CAP_PROP_FRAME_HEIGHT, descriptor_.height_);
   capture->set(CV_CAP_PROP_FRAME_WIDTH, descriptor_.width_);
   capture->set(CV_CAP_PROP_FPS, 60);
-  printf("Camera Frame Rate: %f\n", capture->get(CV_CAP_PROP_FPS));
   return capture->isOpened();
 }
 

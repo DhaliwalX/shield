@@ -10,6 +10,15 @@
 
 namespace avenger {
 
+enum class BotState {
+  kResting,
+  kToAndFro,
+  kForward,
+  kBackward,
+  kTurningLeft,
+  kTurningRight,
+};
+
 class Bot {
   Bot(int id, const std::string &ip);
 

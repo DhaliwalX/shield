@@ -6,6 +6,7 @@
 #include <boost/asio.hpp>
 #include <iostream>
 #include <boost/bind.hpp>
+#include <xavier/BotParameters.h>
 
 boost::asio::ip::tcp::iostream& avenger::strange::TCPConnection::stream() {
   return stream_;
@@ -24,11 +25,7 @@ boost::asio::ip::tcp::socket& avenger::strange::TCPConnection::socket() {
 void avenger::strange::TCPConnection::debug() {
   static const std::string message_ = "Hello, World";
 
-  boost::asio::async_write(
-      socket(), boost::asio::buffer(message_),
-      boost::bind(&TCPConnection::handleWrite, shared_from_this(),
-                  boost::asio::placeholders::error,
-                  boost::asio::placeholders::bytes_transferred));
+  std::cout << "Hello, World" << std::endl;
 }
 
 avenger::strange::TCPConnection::TCPConnection(boost::asio::io_service& service)
@@ -38,4 +35,17 @@ void avenger::strange::TCPConnection::handleWrite(
     const boost::system::error_code& ec,
     size_t transfered) {
   std::cout << "Sent message" << std::endl;
+}
+
+void avenger::strange::TCPConnection::sendMessage(MessageHandle &messageHandle,
+                                                  avenger::strange::TCPWriteListener *listener) {
+  if (connectionStillAvailable()) {
+    boost::asio::async_write(socket(), boost::asio::buffer(messageHandle.get(), sizeof(xavier::BotParameters)),
+                             [&listener, &messageHandle](const boost::system::error_code &ec, const size_t &size) {
+                               listener->onComplete(messageHandle);
+                             }
+    );
+  } else {
+    std::cerr << "Tried to send message to a connection which is broken" << std::endl;
+  }
 }

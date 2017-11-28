@@ -54,7 +54,6 @@ void avenger::hawkeye::HawkeyeView::onCapture(
   convertMatToBitmap(&bitmapCache_, store_, *currentFrame_);
 
   auto duration = std::chrono::duration_cast<Milliseconds>(Clock::now() - past);
-  std::cout << counter++ << " Processing took " << duration.count() << " milliseconds" << std::endl;
 //  setDirty(true);
 }
 

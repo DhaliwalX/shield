@@ -22,6 +22,8 @@ class TelematicsMonitor {
   Location sampleAveragePosition();
   Velocity sampleAverageVelocity();
 
+  bool hasEmptyCache() { return cache_.empty(); }
+
   std::shared_ptr<Bot> &bot() { return bot_; }
 
   static std::shared_ptr<TelematicsMonitor>

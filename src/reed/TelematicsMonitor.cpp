@@ -40,7 +40,7 @@ void TelematicsMonitor::update(Location location) {
 }
 
 BotTelematics TelematicsMonitor::getLastTelematics() {
-  return cache_.empty() ? BotTelematics{} : cache_.getLatest();
+  return hasEmptyCache() ? BotTelematics{} : cache_.getLatest();
 }
 
 void TelematicsMonitor::initializeUpdate() {

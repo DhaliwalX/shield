@@ -9,9 +9,15 @@
 #include <string>
 #include <boost/enable_shared_from_this.hpp>
 #include <boost/asio/ip/tcp.hpp>
+#include <shield/events/EventListener.h>
 
 namespace avenger {
 namespace strange {
+
+using MessageHandle = std::shared_ptr<char>;
+
+using TCPWriteListener = CompletionListener<MessageHandle>;
+
 class TCPConnection : public std::enable_shared_from_this<TCPConnection> {
  public:
   using pointer = std::shared_ptr<TCPConnection>;
@@ -27,6 +33,9 @@ class TCPConnection : public std::enable_shared_from_this<TCPConnection> {
 
   void debug();
 
+  void sendMessage(MessageHandle &messageHandle, TCPWriteListener *listener);
+
+  bool connectionStillAvailable() { return socket_.is_open(); }
  private:
   boost::asio::ip::tcp::iostream stream_;
   boost::asio::ip::tcp::socket socket_;

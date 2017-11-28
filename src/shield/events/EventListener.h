@@ -16,6 +16,13 @@ class EventListener {
 
   virtual void onEvent(std::shared_ptr<Event> event) = 0;
 };
+
+template <typename T>
+class CompletionListener {
+ public:
+  virtual void onComplete(const T &t) = 0;
+};
+
 }
 
 #endif  // HELLOWORLD_EVENTSUBSCRIBER_H
