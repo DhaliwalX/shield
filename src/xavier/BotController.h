@@ -19,6 +19,9 @@ namespace xavier {
 class BotController {
  public:
   BotController();
+  BotController(const BotController &other) = default;
+
+  static std::shared_ptr<BotController> Make(std::shared_ptr<Bot> connection);
 
   // moves bot to and fro, this motion will be detected by reed
   // and if there was polling going on and this bot comes under
@@ -42,9 +45,11 @@ class BotController {
     connection_ = std::move(connection);
   }
 
+  auto &bot() { return bot_; }
+
  private:
   std::shared_ptr<Bot> bot_;
-  Messenger messenger;
+  std::shared_ptr<Messenger> messenger;
   std::shared_ptr<strange::TCPConnection> connection_;
 };
 

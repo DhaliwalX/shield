@@ -7,6 +7,7 @@
 
 #include <string>
 #include <memory>
+#include <strange/TCPConnection.h>
 
 namespace avenger {
 
@@ -20,12 +21,12 @@ enum class BotState {
 };
 
 class Bot {
-  Bot(int id, const std::string &ip);
+  Bot(int id, std::shared_ptr<strange::TCPConnection> connection);
 
   static int botNumber;
  public:
 
-  static std::shared_ptr<Bot> Create(const std::string &ip);
+  static std::shared_ptr<Bot> Create(std::shared_ptr<strange::TCPConnection> connection);
 
   int getId() { return id_; }
 
@@ -34,13 +35,19 @@ class Bot {
   void setVisible(bool visible) { visible_ = visible; }
   bool isVisible() { return visible_; }
 
-  const std::string &ip() const { return ip_; }
+  std::string ip() const { return connection_->getIP(); }
+
+  auto connection() { return connection_; }
+
  private:
   int id_;
   bool connected_;
   bool visible_;
-  std::string ip_;
+  std::shared_ptr<strange::TCPConnection> connection_;
 };
+
+
+std::ostream &operator<<(std::ostream &os, std::shared_ptr<Bot> bot);
 
 }
 #endif //HELLOWORLD_BOT_H

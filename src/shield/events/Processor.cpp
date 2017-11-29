@@ -21,7 +21,7 @@ void avenger::Processor::startMonitoring() {
 }
 
 void avenger::Processor::waitExecuteLoop() {
-    while (true) {
+    while (!shouldStop) {
       // wait for some task
       while (queue_.empty());
 
@@ -33,4 +33,9 @@ void avenger::Processor::waitExecuteLoop() {
 void avenger::Processor::processOne() {
   auto task = queue_.pull();
   task.execute();
+}
+
+avenger::Processor::~Processor() {
+  shouldStop = true;
+  processorThread_->join();
 }

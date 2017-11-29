@@ -5,10 +5,9 @@
 #include "Server.h"
 #include <boost/asio.hpp>
 #include <boost/bind.hpp>
-#include <utility>
 #include <shield/SHIELD.h>
 #include <shield/events/dispatcher.h>
-#include "TCPConnection.h"
+#include <iostream>
 #include "ConnectionEvent.h"
 
 using namespace boost::asio::ip;
@@ -44,7 +43,13 @@ void Server::acceptConnection() {
 }
 
 void Server::startListening() {
-  acceptConnection();
+  serverThread_ = std::make_unique<std::thread>([this]{
+    acceptConnection();
+    service_.getService().run();
+    std::cerr << "Server thread has ended." << std::endl;
+  });
+
+
 }
 }
 }

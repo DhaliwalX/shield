@@ -2,6 +2,7 @@
 // Created by malcolm on 22/11/17.
 //
 
+#include <iostream>
 #include "App.h"
 
 void avenger::scarlet::App::setRootView(
@@ -12,7 +13,6 @@ void avenger::scarlet::App::setRootView(
 void avenger::scarlet::App::draw(SkCanvas* canvas) {
   this->onCreate(canvas);
   if (canvas != nullptr && root && isDirty()) {
-    canvas->clear(SK_ColorLTGRAY);
     root->draw(canvas);
   }
 }

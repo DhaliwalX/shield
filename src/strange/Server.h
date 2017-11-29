@@ -6,6 +6,7 @@
 #define ARDUINONETWORKING_SERVER_H
 
 #include <boost/asio/ip/tcp.hpp>
+#include <thread>
 #include "shield/IOService.h"
 #include "TCPConnection.h"
 
@@ -26,6 +27,7 @@ class Server {
   IOService& service_;
   boost::asio::ip::tcp::endpoint endpoint_;
   boost::asio::ip::tcp::acceptor acceptor_;
+  std::unique_ptr<std::thread> serverThread_;
 
   void acceptConnection();
 };

@@ -17,6 +17,7 @@ namespace avenger {
 class Processor {
  public:
   Processor();
+  ~Processor();
 
   void nextTick(Task event);
 
@@ -31,6 +32,7 @@ class Processor {
   std::mutex lock_;
   std::condition_variable var_;
   bool more_;
+  bool shouldStop = false;
 
   std::unique_ptr<std::thread> processorThread_;
 };

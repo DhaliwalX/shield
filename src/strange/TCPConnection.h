@@ -14,7 +14,7 @@
 namespace avenger {
 namespace strange {
 
-using MessageHandle = std::shared_ptr<char>;
+using MessageHandle = char*;
 
 using TCPWriteListener = CompletionListener<MessageHandle>;
 
@@ -33,13 +33,16 @@ class TCPConnection : public std::enable_shared_from_this<TCPConnection> {
 
   void debug();
 
-  void sendMessage(MessageHandle &messageHandle, TCPWriteListener *listener);
-
   bool connectionStillAvailable() { return socket_.is_open(); }
+
+  void sendMessage(MessageHandle messageHandle, TCPWriteListener *listener);
+
+  std::string getIP() { return socket_.remote_endpoint().address().to_string(); }
  private:
   boost::asio::ip::tcp::iostream stream_;
   boost::asio::ip::tcp::socket socket_;
   boost::asio::io_service& service_;
+
 };
 }
 }

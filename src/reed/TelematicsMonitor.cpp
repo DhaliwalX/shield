@@ -15,6 +15,11 @@ TelematicsMonitor::TelematicsMonitor(std::shared_ptr<Bot> bot)
     : cache_{}, average_{}, bot_{std::move(bot)}
 { }
 
+void TelematicsMonitor::restart() {
+  cache_.cache().clear();
+  average_ = {};
+}
+
 void TelematicsMonitor::update(Location location) {
   initializeUpdate();
 

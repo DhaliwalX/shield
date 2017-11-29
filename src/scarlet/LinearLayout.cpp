@@ -2,6 +2,7 @@
 #include <SkBitmap.h>
 #include <SkCanvas.h>
 #include <algorithm>
+#include <iostream>
 #include "LinearLayout.h"
 
 namespace avenger {

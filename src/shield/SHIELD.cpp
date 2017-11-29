@@ -5,6 +5,8 @@
 #include "SHIELD.h"
 #include <hawkeye/Camera.h>
 #include <SkGraphics.h>
+#include <strange/ConnectionEvent.h>
+#include <reed/TelematicsEvent.h>
 
 namespace avenger {
 SHIELD* SHIELD::shield;
@@ -21,6 +23,11 @@ void SHIELD::Init() {
   }
   avenger::hawkeye::Camera::StartCapturing();
   SkGraphics::Init();
+
+  strange::ConnectionEvent::Init();
+  reed::TelematicsEvent::Init();
+
+  shield->reedRef_.startService();
 }
 
 void SHIELD::Destroy() {

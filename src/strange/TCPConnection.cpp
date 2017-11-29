@@ -37,11 +37,11 @@ void avenger::strange::TCPConnection::handleWrite(
   std::cout << "Sent message" << std::endl;
 }
 
-void avenger::strange::TCPConnection::sendMessage(MessageHandle &messageHandle,
+void avenger::strange::TCPConnection::sendMessage(MessageHandle messageHandle,
                                                   avenger::strange::TCPWriteListener *listener) {
   if (connectionStillAvailable()) {
-    boost::asio::async_write(socket(), boost::asio::buffer(messageHandle.get(), sizeof(xavier::BotParameters)),
-                             [&listener, &messageHandle](const boost::system::error_code &ec, const size_t &size) {
+    boost::asio::async_write(socket(), boost::asio::buffer(messageHandle, sizeof(xavier::BotParameters)),
+                             [listener, messageHandle](const boost::system::error_code &ec, const size_t &size) {
                                listener->onComplete(messageHandle);
                              }
     );

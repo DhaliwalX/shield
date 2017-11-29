@@ -26,6 +26,9 @@ class TelematicsMonitor {
 
   std::shared_ptr<Bot> &bot() { return bot_; }
 
+
+  void restart();
+
   static std::shared_ptr<TelematicsMonitor>
             Make(std::shared_ptr<Bot> bot);
  private:

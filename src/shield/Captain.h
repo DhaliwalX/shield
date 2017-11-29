@@ -19,10 +19,14 @@ class Captain : public App {
 
   void onCreate(SkCanvas* canvas) override;
 
+  void updateThread();
  private:
   std::shared_ptr<avenger::hawkeye::HawkeyeView> camera;
   std::shared_ptr<LinearLayout> telematicsLayout;
   TelematicsPointer telematics;
+
+  std::unique_ptr<std::thread> teleThread;
+  bool shouldStop = false;
 };
 }
 }

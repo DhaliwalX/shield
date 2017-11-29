@@ -6,6 +6,7 @@
 #define HELLOWORLD_SHIELD_H
 
 #include <shield/events/Processor.h>
+#include <reed/Reed.h>
 #include "shield/events/Event.h"
 
 namespace avenger {
@@ -27,9 +28,10 @@ class SHIELD {
   static void Destroy();
   static SHIELD* GetInstance();
 
+  auto &reed() { return reedRef_; }
  private:
   Processor eventProcessor_;
-
+  reed::HandleReed reedRef_;
   static SHIELD* shield;
 };
 }

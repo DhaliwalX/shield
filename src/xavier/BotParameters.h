@@ -4,7 +4,9 @@
 
 #ifndef HELLOWORLD_BOTPARAMETERS_H
 #define HELLOWORLD_BOTPARAMETERS_H
+
 #include <cstdint>
+
 namespace avenger {
 namespace xavier {
 
@@ -20,7 +22,8 @@ enum BotCommand {
   kMoveL,
   kMoveR,
   kStop,
-  kPoll
+  kPoll,
+  kNoPoll
 };
 
 struct BotParameters {

@@ -67,6 +67,8 @@ class View {
   virtual void draw(SkCanvas* canvas);
 
   bool isDirty();
+  std::string getName() { return name_; }
+  void setName(const std::string &name) { name_ = name; }
  protected:
   virtual void setLayoutParams(std::unique_ptr<LayoutParams> params);
 
@@ -77,6 +79,7 @@ class View {
 
  private:
   bool dirty_;
+  std::string name_;
 };
 }
 }

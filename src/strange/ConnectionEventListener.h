@@ -16,7 +16,7 @@ class ConnectionEventListener : public EventListener {
  public:
   virtual void onNewConnection(std::shared_ptr<ConnectionEvent> event) = 0;
 
-  void onEvent(std::shared_ptr<Event> event) override final;
+  void onEvent(std::shared_ptr<Event> event) final;
 };
 }
 }

@@ -20,7 +20,7 @@ class EventListener {
 template <typename T>
 class CompletionListener {
  public:
-  virtual void onComplete(const T &t) = 0;
+  virtual void onComplete(T t) = 0;
 };
 
 }

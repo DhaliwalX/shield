@@ -51,6 +51,8 @@ bool Camera::openCamera(int cameraNumber) {
 }
 
 Camera::~Camera() {
+  shouldStop = true;
+  captureThread_->join();
   if (capture && capture->isOpened()) {
     capture->release();
   }
@@ -61,7 +63,7 @@ void Camera::startCaptureThread() {
 }
 
 void Camera::captureLoop() {
-  while (true) {
+  while (!shouldStop) {
     std::shared_ptr<cv::Mat> frame = std::make_shared<cv::Mat>();
 
     *capture >> (*frame);
@@ -72,10 +74,7 @@ void Camera::captureLoop() {
     // create a FrameCaptureEvent and dispatch it
     auto event = std::make_shared<FrameCaptureEvent>(frame);
 
-    imshow("Live", *frame);
-    if (cv::waitKey(5) > 0) {
-      break;
-    };
+    //imshow("Live", *frame);
     dispatch(SHIELD::GetInstance(), event);
   }
 }

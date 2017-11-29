@@ -19,7 +19,7 @@ class PyMessenger {
     messenger_ = messenger;
   }
 
-  void sendMessage() {};
+
  private:
   std::shared_ptr<xavier::Messenger> messenger_;
   std::shared_ptr<strange::TCPConnection> connection_;

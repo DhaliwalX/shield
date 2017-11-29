@@ -5,12 +5,15 @@
 #ifndef SHIELD_BOTPOLLDETECTOR_H
 #define SHIELD_BOTPOLLDETECTOR_H
 
+#include <opencv2/core/mat.hpp>
+#include "BotDetector.h"
+
 namespace avenger {
 namespace reed {
 
 class BotPollDetector {
  public:
-
+  std::vector<DetectorResult> runOn(cv::Mat &mat);
 };
 
 }

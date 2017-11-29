@@ -14,39 +14,17 @@ void avenger::scarlet::Captain::onCreate(SkCanvas* canvas) {
 
 avenger::scarlet::Captain::Captain() {
   SHIELD::Init();
+
   camera = std::make_shared<avenger::hawkeye::HawkeyeView>();
   camera->getLayoutParams()->setHeight(720);
   camera->getLayoutParams()->setWidth(1280);
   avenger::hawkeye::Camera::AddListener(camera.get());
 
-  auto bot = avenger::Bot::Create("Hello");
+  auto bot = avenger::Bot::Create(nullptr);
   telematics = std::make_shared<avenger::reed::TelematicsView>(bot);
   telematics->setWidth(1855 - 1280);
   telematics->setHeight(1056);
 
-//  telematicsLayout = std::make_shared<LinearLayout>();
-//  telematicsLayout->setDirection(LinearLayout::Direction::kVertical);
-//  telematicsLayout->setWidth(1855 - 1280);
-//
-//  auto bot = avenger::Bot::Create("hello");
-//  auto one = std::make_shared<reed::TelematicsView>(bot);
-//  one->getLayoutParams()->setWidth(320);
-//  telematicsLayout->addChild(one);
-//
-//  bot = avenger::Bot::Create("hello");
-//  one = std::make_shared<reed::TelematicsView>(bot);
-//  one->getLayoutParams()->setWidth(320);
-//  telematicsLayout->addChild(one);
-//
-//  bot = avenger::Bot::Create("hello");
-//  one = std::make_shared<reed::TelematicsView>(bot);
-//  one->getLayoutParams()->setWidth(320);
-//  telematicsLayout->addChild(one);
-//
-//  bot = avenger::Bot::Create("hello");
-//  one = std::make_shared<reed::TelematicsView>(bot);
-//  one->getLayoutParams()->setWidth(320);
-//  telematicsLayout->addChild(one);
   std::vector<std::shared_ptr<View>> children;
 
   auto fixedView = std::make_shared<FixedView>();
@@ -88,9 +66,16 @@ avenger::scarlet::Captain::Captain() {
   horizontalLayout->addChild(margin);
   horizontalLayout->addChild(rightView);
   horizontalLayout->addChild(margin);
-  setRootView(horizontalLayout);
+  setRootView(telematics);
+
+  updateThread();
 }
 
 avenger::scarlet::Captain::~Captain() {
   SHIELD::Destroy();
+  shouldStop = true;
+  teleThread->join();
+}
+
+void avenger::scarlet::Captain::updateThread() {
 }

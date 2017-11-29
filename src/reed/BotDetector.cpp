@@ -3,9 +3,7 @@
 //
 
 #include "BotDetector.h"
-#include <opencv2/imgproc/types_c.h>
-#include <opencv/cv.hpp>
-#include <iostream>
+#include <opencv2/opencv.hpp>
 
 std::vector<avenger::reed::DetectorResult>
 avenger::reed::BotDetector::runOn(cv::Mat &mat) {
@@ -29,10 +27,14 @@ avenger::reed::BotDetector::runOn(cv::Mat &mat) {
   for (auto &i : circles) {
     Point center(cvRound(i[0]), cvRound(i[1]));
     auto radius = (i[2]);
-    result.push_back(DetectorResult(center, radius));
+    result.emplace_back(center, radius);
+
+    cv::circle(color, cv::Point(cvRound(i[0]), cvRound(i[1])), radius, cv::Vec3d(255, 0, 0));
   }
 
-  //compute distance transform:
-  cv::Mat dt;
-  cv::distanceTransform(255 - (canny > 0), dt, CV_DIST_L2, 3);
+  cv::imshow("Live", color);
+
+  cv::waitKey(1);
+
+  return result;
 }

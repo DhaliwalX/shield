@@ -57,6 +57,7 @@ class Camera {
   FrameDescriptor descriptor_;
   std::unique_ptr<cv::VideoCapture> capture;
   std::unique_ptr<std::thread> captureThread_;
+  bool shouldStop = false;
 
   static std::shared_ptr<Camera> camera_;
 };
